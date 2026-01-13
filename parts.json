@@ -2,141 +2,146 @@
   "basePrice": 15000,
   "categories": [
     {
-      "id": "buttons",
-      "name": "ボタン",
-      "parts": [
-        {
-          "id": "standard_buttons",
-          "name": "標準ボタン",
-          "grade": "standard",
-          "priceModifier": 0,
-          "description": "耐久性に優れた標準ボタン"
-        },
-        {
-          "id": "tactile_buttons",
-          "name": "タクタイルボタン",
-          "grade": "premium",
-          "priceModifier": 2000,
-          "description": "クリック感の良い高品質ボタン"
-        },
-        {
-          "id": "mechanical_buttons",
-          "name": "メカニカルボタン",
-          "grade": "luxury",
-          "priceModifier": 5000,
-          "description": "最高級のメカニカルスイッチ採用"
-        }
-      ]
-    },
-    {
       "id": "sticks",
-      "name": "アナログスティック",
+      "name": "スティック",
       "parts": [
         {
-          "id": "standard_sticks",
-          "name": "標準スティック",
-          "grade": "standard",
-          "priceModifier": 0,
-          "description": "安定した操作性の標準スティック"
-        },
-        {
-          "id": "hall_effect_sticks",
-          "name": "ホールエフェクトスティック",
-          "grade": "premium",
-          "priceModifier": 3000,
-          "description": "ドリフト現象を防ぐ磁気センサー式"
-        },
-        {
-          "id": "precision_sticks",
-          "name": "プレシジョンスティック",
-          "grade": "luxury",
-          "priceModifier": 6000,
-          "description": "プロ仕様の高精度スティック"
-        }
-      ]
-    },
-    {
-      "id": "case",
-      "name": "ケース",
-      "parts": [
-        {
-          "id": "plastic_case",
-          "name": "プラスチックケース",
-          "grade": "standard",
-          "priceModifier": 0,
-          "description": "軽量で丈夫なプラスチック製"
-        },
-        {
-          "id": "rubberized_case",
-          "name": "ラバーグリップケース",
-          "grade": "premium",
-          "priceModifier": 1500,
-          "description": "滑りにくいラバーコーティング"
-        },
-        {
-          "id": "aluminum_case",
-          "name": "アルミニウムケース",
-          "grade": "luxury",
-          "priceModifier": 4000,
-          "description": "高級感のある金属製ケース"
-        }
-      ]
-    },
-    {
-      "id": "cable",
-      "name": "ケーブル",
-      "parts": [
-        {
-          "id": "standard_cable",
-          "name": "標準USBケーブル",
-          "grade": "standard",
-          "priceModifier": 0,
-          "description": "2m 標準ケーブル"
-        },
-        {
-          "id": "braided_cable",
-          "name": "編み込みケーブル",
-          "grade": "premium",
-          "priceModifier": 1000,
-          "description": "耐久性の高い編み込みケーブル"
-        },
-        {
-          "id": "wireless",
-          "name": "ワイヤレス",
-          "grade": "luxury",
-          "priceModifier": 3500,
-          "description": "Bluetooth接続、充電式バッテリー内蔵"
-        }
-      ]
-    },
-    {
-      "id": "extras",
-      "name": "追加オプション",
-      "multiple": true,
-      "parts": [
-        {
-          "id": "led_lighting",
-          "name": "LEDライティング",
-          "priceModifier": 2500,
-          "description": "カスタマイズ可能なRGB LED"
-        },
-        {
-          "id": "custom_color",
-          "name": "カスタムカラー",
-          "priceModifier": 1500,
-          "description": "お好みの色でペイント"
-        },
-        {
-          "id": "paddles",
-          "name": "背面パドル",
-          "priceModifier": 3000,
-          "description": "背面に追加ボタン（2個）"
-        },
-        {
-          "id": "carrying_case",
-          "name": "専用キャリングケース",
+          "id": "stick_new",
+          "name": "新品",
           "priceModifier": 2000,
-          "description": "持ち運びに便利な保護ケース"
+          "description": "新品のスティック"
+        },
+        {
+          "id": "stick_wobble",
+          "name": "ややぐらつき(操作に影響なし)",
+          "priceModifier": 0,
+          "description": "多少のぐらつきがありますが、操作には影響ありません"
+        }
+      ]
+    },
+    {
+      "id": "touch_sensor",
+      "name": "スティック部タッチセンサー",
+      "parts": [
+        {
+          "id": "touch_working",
+          "name": "反応あり",
+          "priceModifier": 2000,
+          "description": "タッチセンサーが正常に動作します"
+        },
+        {
+          "id": "touch_not_working",
+          "name": "反応無し",
+          "priceModifier": 0,
+          "description": "タッチセンサーは動作しません"
+        }
+      ]
+    },
+    {
+      "id": "battery",
+      "name": "バッテリー",
+      "parts": [
+        {
+          "id": "battery_8h_plus",
+          "name": "8時間以上",
+          "priceModifier": 3000,
+          "description": "フル充電で8時間以上の連続使用が可能"
+        },
+        {
+          "id": "battery_7h_7h30",
+          "name": "7時間半から7時間",
+          "priceModifier": 2000,
+          "description": "フル充電で7時間〜7時間半の連続使用が可能"
+        },
+        {
+          "id": "battery_6h30_7h",
+          "name": "6時間半から7時間",
+          "priceModifier": 1000,
+          "description": "フル充電で6時間半〜7時間の連続使用が可能"
+        },
+        {
+          "id": "battery_6h_6h30",
+          "name": "6時間から6時間半",
+          "priceModifier": 0,
+          "description": "フル充電で6時間〜6時間半の連続使用が可能"
+        },
+        {
+          "id": "battery_less_6h",
+          "name": "6時間未満",
+          "priceModifier": -2000,
+          "description": "フル充電で6時間未満の連続使用"
+        }
+      ]
+    },
+    {
+      "id": "connector",
+      "name": "コネクタ",
+      "parts": [
+        {
+          "id": "connector_new_generic",
+          "name": "新品(ジェネリック品)",
+          "priceModifier": 3000,
+          "description": "新品のジェネリックコネクタ"
+        },
+        {
+          "id": "connector_used",
+          "name": "中古品",
+          "priceModifier": 0,
+          "description": "動作確認済みの中古コネクタ"
+        }
+      ]
+    },
+    {
+      "id": "exterior",
+      "name": "外装",
+      "parts": [
+        {
+          "id": "exterior_repainted",
+          "name": "再塗装済み",
+          "priceModifier": 6000,
+          "description": "専門業者による再塗装済み"
+        },
+        {
+          "id": "exterior_no_shine",
+          "name": "テカリなし",
+          "priceModifier": 6000,
+          "description": "テカリのない良好な状態"
+        },
+        {
+          "id": "exterior_shine",
+          "name": "テカリあり",
+          "priceModifier": 2000,
+          "description": "多少のテカリがあります"
+        },
+        {
+          "id": "exterior_paint_wear_small",
+          "name": "塗装ハゲ少",
+          "priceModifier": 0,
+          "description": "わずかな塗装の剥がれがあります"
+        },
+        {
+          "id": "exterior_paint_wear_large",
+          "name": "塗装ハゲ多",
+          "priceModifier": -2000,
+          "description": "目立つ塗装の剥がれがあります"
+        }
+      ]
+    },
+    {
+      "id": "crack",
+      "name": "割れ",
+      "parts": [
+        {
+          "id": "crack_forbidden",
+          "name": "割れ厳禁",
+          "priceModifier": 0,
+          "description": "割れがない良好な状態"
+        },
+        {
+          "id": "crack_allowed",
+          "name": "割れ許容",
+          "priceModifier": -2000,
+          "description": "多少の割れがあります"
         }
       ]
     }

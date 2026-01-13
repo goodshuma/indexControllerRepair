@@ -119,29 +119,6 @@
             font-size: 1.1em;
         }
 
-        .part-grade {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            margin-left: 10px;
-        }
-
-        .grade-standard {
-            background: #e3f2fd;
-            color: #1976d2;
-        }
-
-        .grade-premium {
-            background: #f3e5f5;
-            color: #7b1fa2;
-        }
-
-        .grade-luxury {
-            background: #fff3e0;
-            color: #e65100;
-        }
-
         .part-description {
             color: #666;
             font-size: 0.95em;
@@ -324,8 +301,9 @@
                     input.value = part.id;
                     input.id = `part_${part.id}`;
 
-                    // デフォルト選択（標準グレード）
-                    if (!category.multiple && part.grade === 'standard') {
+                    // デフォルト選択（各カテゴリの最初のパーツ）
+                    const isFirstPart = category.parts.indexOf(part) === 0;
+                    if (!category.multiple && isFirstPart) {
                         input.checked = true;
                         selectedParts[category.id] = part;
                         partDiv.classList.add('selected');
@@ -341,15 +319,6 @@
                     partName.className = 'part-name';
                     partName.textContent = part.name;
                     nameContainer.appendChild(partName);
-
-                    if (part.grade) {
-                        const gradeSpan = document.createElement('span');
-                        gradeSpan.className = `part-grade grade-${part.grade}`;
-                        gradeSpan.textContent = part.grade === 'standard' ? '標準' :
-                                               part.grade === 'premium' ? '高級' :
-                                               'プレミアム';
-                        nameContainer.appendChild(gradeSpan);
-                    }
 
                     const partPrice = document.createElement('span');
                     partPrice.className = 'part-price';
