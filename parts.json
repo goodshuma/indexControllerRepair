@@ -1,0 +1,144 @@
+{
+  "basePrice": 15000,
+  "categories": [
+    {
+      "id": "buttons",
+      "name": "ボタン",
+      "parts": [
+        {
+          "id": "standard_buttons",
+          "name": "標準ボタン",
+          "grade": "standard",
+          "priceModifier": 0,
+          "description": "耐久性に優れた標準ボタン"
+        },
+        {
+          "id": "tactile_buttons",
+          "name": "タクタイルボタン",
+          "grade": "premium",
+          "priceModifier": 2000,
+          "description": "クリック感の良い高品質ボタン"
+        },
+        {
+          "id": "mechanical_buttons",
+          "name": "メカニカルボタン",
+          "grade": "luxury",
+          "priceModifier": 5000,
+          "description": "最高級のメカニカルスイッチ採用"
+        }
+      ]
+    },
+    {
+      "id": "sticks",
+      "name": "アナログスティック",
+      "parts": [
+        {
+          "id": "standard_sticks",
+          "name": "標準スティック",
+          "grade": "standard",
+          "priceModifier": 0,
+          "description": "安定した操作性の標準スティック"
+        },
+        {
+          "id": "hall_effect_sticks",
+          "name": "ホールエフェクトスティック",
+          "grade": "premium",
+          "priceModifier": 3000,
+          "description": "ドリフト現象を防ぐ磁気センサー式"
+        },
+        {
+          "id": "precision_sticks",
+          "name": "プレシジョンスティック",
+          "grade": "luxury",
+          "priceModifier": 6000,
+          "description": "プロ仕様の高精度スティック"
+        }
+      ]
+    },
+    {
+      "id": "case",
+      "name": "ケース",
+      "parts": [
+        {
+          "id": "plastic_case",
+          "name": "プラスチックケース",
+          "grade": "standard",
+          "priceModifier": 0,
+          "description": "軽量で丈夫なプラスチック製"
+        },
+        {
+          "id": "rubberized_case",
+          "name": "ラバーグリップケース",
+          "grade": "premium",
+          "priceModifier": 1500,
+          "description": "滑りにくいラバーコーティング"
+        },
+        {
+          "id": "aluminum_case",
+          "name": "アルミニウムケース",
+          "grade": "luxury",
+          "priceModifier": 4000,
+          "description": "高級感のある金属製ケース"
+        }
+      ]
+    },
+    {
+      "id": "cable",
+      "name": "ケーブル",
+      "parts": [
+        {
+          "id": "standard_cable",
+          "name": "標準USBケーブル",
+          "grade": "standard",
+          "priceModifier": 0,
+          "description": "2m 標準ケーブル"
+        },
+        {
+          "id": "braided_cable",
+          "name": "編み込みケーブル",
+          "grade": "premium",
+          "priceModifier": 1000,
+          "description": "耐久性の高い編み込みケーブル"
+        },
+        {
+          "id": "wireless",
+          "name": "ワイヤレス",
+          "grade": "luxury",
+          "priceModifier": 3500,
+          "description": "Bluetooth接続、充電式バッテリー内蔵"
+        }
+      ]
+    },
+    {
+      "id": "extras",
+      "name": "追加オプション",
+      "multiple": true,
+      "parts": [
+        {
+          "id": "led_lighting",
+          "name": "LEDライティング",
+          "priceModifier": 2500,
+          "description": "カスタマイズ可能なRGB LED"
+        },
+        {
+          "id": "custom_color",
+          "name": "カスタムカラー",
+          "priceModifier": 1500,
+          "description": "お好みの色でペイント"
+        },
+        {
+          "id": "paddles",
+          "name": "背面パドル",
+          "priceModifier": 3000,
+          "description": "背面に追加ボタン（2個）"
+        },
+        {
+          "id": "carrying_case",
+          "name": "専用キャリングケース",
+          "priceModifier": 2000,
+          "description": "持ち運びに便利な保護ケース"
+        }
+      ]
+    }
+  ]
+}

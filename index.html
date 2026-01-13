@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コントローラー お見積もり</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .parts-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .category {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-title {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .part-option {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .part-option:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .part-option.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+        }
+
+        .part-option input[type="radio"],
+        .part-option input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .part-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .part-name {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .part-price {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .part-grade {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-left: 10px;
+        }
+
+        .grade-standard {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .grade-premium {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .grade-luxury {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .part-description {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .summary {
+            position: sticky;
+            top: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            height: fit-content;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .summary-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .price-breakdown {
+            margin-bottom: 20px;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .price-label {
+            color: #666;
+        }
+
+        .price-value {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .total-price {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .total-label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .total-value {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        .selected-items {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .selected-items-title {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .selected-item {
+            padding: 8px 0;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .summary {
+                position: static;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 コントローラー お見積もり</h1>
+            <p class="subtitle">お好みのパーツを選んで、オリジナルコントローラーをカスタマイズ</p>
+        </header>
+
+        <div class="content">
+            <div class="parts-section" id="partsSection">
+                <div class="loading">パーツ情報を読み込み中...</div>
+            </div>
+
+            <div class="summary">
+                <h2 class="summary-title">お見積もり</h2>
+                <div class="price-breakdown">
+                    <div class="price-item">
+                        <span class="price-label">基本価格</span>
+                        <span class="price-value" id="basePrice">¥0</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-label">追加オプション</span>
+                        <span class="price-value" id="optionsPrice">¥0</span>
+                    </div>
+                </div>
+                <div class="total-price">
+                    <div class="total-label">合計金額</div>
+                    <div class="total-value" id="totalPrice">¥0</div>
+                </div>
+                <div class="selected-items">
+                    <div class="selected-items-title">選択中のパーツ</div>
+                    <div id="selectedItemsList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let partsData = null;
+        let selectedParts = {};
+        let selectedExtras = new Set();
+
+        // JSONファイルを読み込む
+        async function loadParts() {
+            try {
+                const response = await fetch('parts.json');
+                partsData = await response.json();
+                renderParts();
+                updatePrice();
+            } catch (error) {
+                document.getElementById('partsSection').innerHTML =
+                    '<div class="loading">パーツ情報の読み込みに失敗しました。</div>';
+                console.error('Error loading parts:', error);
+            }
+        }
+
+        // パーツ選択UIを生成
+        function renderParts() {
+            const partsSection = document.getElementById('partsSection');
+            partsSection.innerHTML = '';
+
+            partsData.categories.forEach(category => {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'category';
+
+                const categoryTitle = document.createElement('h2');
+                categoryTitle.className = 'category-title';
+                categoryTitle.textContent = category.name;
+                categoryDiv.appendChild(categoryTitle);
+
+                category.parts.forEach(part => {
+                    const partDiv = document.createElement('div');
+                    partDiv.className = 'part-option';
+
+                    const inputType = category.multiple ? 'checkbox' : 'radio';
+                    const inputName = category.multiple ? `extra_${part.id}` : category.id;
+
+                    const input = document.createElement('input');
+                    input.type = inputType;
+                    input.name = inputName;
+                    input.value = part.id;
+                    input.id = `part_${part.id}`;
+
+                    // デフォルト選択（標準グレード）
+                    if (!category.multiple && part.grade === 'standard') {
+                        input.checked = true;
+                        selectedParts[category.id] = part;
+                        partDiv.classList.add('selected');
+                    }
+
+                    partDiv.appendChild(input);
+
+                    const partHeader = document.createElement('div');
+                    partHeader.className = 'part-header';
+
+                    const nameContainer = document.createElement('div');
+                    const partName = document.createElement('span');
+                    partName.className = 'part-name';
+                    partName.textContent = part.name;
+                    nameContainer.appendChild(partName);
+
+                    if (part.grade) {
+                        const gradeSpan = document.createElement('span');
+                        gradeSpan.className = `part-grade grade-${part.grade}`;
+                        gradeSpan.textContent = part.grade === 'standard' ? '標準' :
+                                               part.grade === 'premium' ? '高級' :
+                                               'プレミアム';
+                        nameContainer.appendChild(gradeSpan);
+                    }
+
+                    const partPrice = document.createElement('span');
+                    partPrice.className = 'part-price';
+                    partPrice.textContent = part.priceModifier > 0 ?
+                        `+¥${part.priceModifier.toLocaleString()}` :
+                        part.priceModifier < 0 ?
+                        `-¥${Math.abs(part.priceModifier).toLocaleString()}` :
+                        '¥0';
+
+                    partHeader.appendChild(nameContainer);
+                    partHeader.appendChild(partPrice);
+                    partDiv.appendChild(partHeader);
+
+                    const partDesc = document.createElement('div');
+                    partDesc.className = 'part-description';
+                    partDesc.textContent = part.description;
+                    partDiv.appendChild(partDesc);
+
+                    // クリックイベント
+                    partDiv.addEventListener('click', () => {
+                        input.checked = !input.checked;
+
+                        if (category.multiple) {
+                            if (input.checked) {
+                                selectedExtras.add(part);
+                                partDiv.classList.add('selected');
+                            } else {
+                                selectedExtras.delete(part);
+                                partDiv.classList.remove('selected');
+                            }
+                        } else {
+                            // ラジオボタンの場合、同じカテゴリの他の選択を解除
+                            const allParts = categoryDiv.querySelectorAll('.part-option');
+                            allParts.forEach(p => p.classList.remove('selected'));
+                            partDiv.classList.add('selected');
+                            selectedParts[category.id] = part;
+                        }
+
+                        updatePrice();
+                    });
+
+                    categoryDiv.appendChild(partDiv);
+                });
+
+                partsSection.appendChild(categoryDiv);
+            });
+        }
+
+        // 価格を更新
+        function updatePrice() {
+            if (!partsData) return;
+
+            let total = partsData.basePrice;
+            let optionsTotal = 0;
+
+            // 選択されたパーツの価格を加算
+            for (const categoryId in selectedParts) {
+                const part = selectedParts[categoryId];
+                total += part.priceModifier;
+                optionsTotal += part.priceModifier;
+            }
+
+            // 追加オプションの価格を加算
+            selectedExtras.forEach(extra => {
+                total += extra.priceModifier;
+                optionsTotal += extra.priceModifier;
+            });
+
+            // 表示を更新
+            document.getElementById('basePrice').textContent =
+                `¥${partsData.basePrice.toLocaleString()}`;
+            document.getElementById('optionsPrice').textContent =
+                `¥${optionsTotal.toLocaleString()}`;
+            document.getElementById('totalPrice').textContent =
+                `¥${total.toLocaleString()}`;
+
+            // 選択中のアイテムリストを更新
+            updateSelectedItemsList();
+        }
+
+        // 選択中のアイテムリストを更新
+        function updateSelectedItemsList() {
+            const listDiv = document.getElementById('selectedItemsList');
+            listDiv.innerHTML = '';
+
+            // 選択されたパーツ
+            for (const categoryId in selectedParts) {
+                const part = selectedParts[categoryId];
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'selected-item';
+                itemDiv.textContent = `• ${part.name}`;
+                listDiv.appendChild(itemDiv);
+            }
+
+            // 追加オプション
+            selectedExtras.forEach(extra => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'selected-item';
+                itemDiv.textContent = `• ${extra.name}`;
+                listDiv.appendChild(itemDiv);
+            });
+
+            if (listDiv.children.length === 0) {
+                listDiv.innerHTML = '<div class="selected-item">パーツを選択してください</div>';
+            }
+        }
+
+        // ページ読み込み時にパーツデータを読み込む
+        window.addEventListener('DOMContentLoaded', loadParts);
+    </script>
+</body>
+</html>
